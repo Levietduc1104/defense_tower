@@ -1,0 +1,13 @@
+*/__pycache__/*
+*.pyc
+*.drawio
+test*
+debug*
+Lib/
+Scripts/
+Include/
+pyvenv.cfg
+build/
+venv/
+.vscode/
+craftpix-net-519305-tower-defense-2d-game-kit/
