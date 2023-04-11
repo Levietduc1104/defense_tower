@@ -4,6 +4,7 @@ import pygame
 from enemies.scorpion import Scorpion
 from enemies.club import Club
 from enemies.wizard import Wizard
+from enemies.towers.archerTower import ArcherTowerLong
 
 pygame.font.init()
 
@@ -14,6 +15,9 @@ class Game:
         self.win = pygame.display.set_mode((self.width, self.height))
         self.towers: list = []
         self.enemys = [Club()]
+        self.archer_towers  = [ArcherTowerLong(310,310)]
+
+
         # self.enemys = []
         self.lives: int = 10
         self.money: int = 100
@@ -48,8 +52,6 @@ class Game:
 
             for d in to_del:
                 self.enemys.remove(d)
-
-
             self.draw()
 
 
@@ -64,15 +66,18 @@ class Game:
         # pygame.display.update()
         for enemy in self.enemys:
             enemy.draw(self.win)
-        self.debug(f"{pygame.mouse.get_pos()}", pygame.mouse.get_pos()[0], pygame.mouse.get_pos()[1])
+
+        for tw in self.archer_towers:
+            tw.draw(self.win)
+        # self.debug(f"{pygame.mouse.get_pos()}", pygame.mouse.get_pos()[0], pygame.mouse.get_pos()[1])
         pygame.display.update()
 
-    def debug(self, info, x=10, y=10):
-        display_surf = pygame.display.get_surface()
-        debug_surf = pygame.font.SysFont("Arial", 30).render(str(info), True, "Red")
-        debug_rect = debug_surf.get_rect(topleft=(x,y))
-        pygame.draw.rect(display_surf, "Black", debug_rect)
-        display_surf.blit(debug_surf, debug_rect)
+    # def debug(self, info, x=10, y=10):
+    #     display_surf = pygame.display.get_surface()
+    #     debug_surf = pygame.font.SysFont("Arial", 30).render(str(info), True, "Red")
+    #     debug_rect = debug_surf.get_rect(topleft=(x,y))
+    #     pygame.draw.rect(display_surf, "Black", debug_rect)
+    #     display_surf.blit(debug_surf, debug_rect)
 
 g = Game()
 g.run()
